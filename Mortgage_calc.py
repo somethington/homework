@@ -1,16 +1,28 @@
 class Mortgage():
-    def __init__(self, name, principal, months):
+    def __init__(self, name, principal, months,r, total = 0, monthly = 0):
         self.name = name
         self.principal = principal
         self.months = months
-
-    def calc_mortgage(self,principal, months, r = 0.065 / 12):
-        monthly = (r * principal) / (1 - (1 + r)**(-months)) 
-        return "{name}, your monthly payments will come out to {monthly:.2f}$".format(name = name, monthly = monthly)
+        self.r = r
+        self.total = total
+        self.monthly = monthly
+    
+    def __repr__(self):
+        description = "{name}, your monthly payments will come out to {monthly:.2f}$. Your total loan is {total:.2f}$ spread out over {months} months.".format(total = self.total, months = self.months, name = self.name, monthly = self.monthly)
+        return description
+    def calc_mortgage(self,principal, months, r):
+        self.monthly = (self.r * self.principal) / (1 - (1 + self.r)**(-self.months)) 
+        return self.monthly
+    def total_mortgage(self, monthly, principal, months):
+        self.total = self.monthly * self.months + self.principal
+        return self.total
 
 name = input("What is your name?\n")
-principal = int(input("What is your down payment?\n"))
+r = float(input("What is the yearly interest rate?\n")) / 12 / 100
+principal = float(input("What is your down payment?\n"))
 months = int(input("For how many months do you plan to pay the mortgage?\n"))
 
-mortgage = Mortgage(name, principal, months)
-print(mortgage.calc_mortgage(principal, months))
+mortgage = Mortgage(name, principal, months, r)
+mortgage.calc_mortgage(principal, months, r)
+mortgage.total_mortgage(mortgage.monthly,principal, months)
+print(mortgage)
