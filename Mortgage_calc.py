@@ -10,10 +10,10 @@ class Mortgage():
     def __repr__(self):
         description = "{name}, your monthly payments will come out to {monthly:.2f}$. Your total loan is {total:.2f}$ spread out over {months} months.".format(total = self.total, months = self.months, name = self.name, monthly = self.monthly)
         return description
-    def calc_mortgage(self,principal, months, r):
+    def calc_mortgage(self):
         self.monthly = (self.r * self.principal) / (1 - (1 + self.r)**(-self.months)) 
         return self.monthly
-    def total_mortgage(self, monthly, principal, months):
+    def total_mortgage(self):
         self.total = self.monthly * self.months + self.principal
         return self.total
 
