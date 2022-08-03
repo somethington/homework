@@ -23,6 +23,6 @@ principal = float(input("What is your down payment?\n"))
 months = int(input("For how many months do you plan to pay the mortgage?\n"))
 
 mortgage = Mortgage(name, principal, months, r)
-mortgage.calc_mortgage(principal, months, r)
-mortgage.total_mortgage(mortgage.monthly,principal, months)
+mortgage.calc_mortgage()
+mortgage.total_mortgage()
 print(mortgage)
