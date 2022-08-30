@@ -1,0 +1,29 @@
+from math import sqrt
+import statistics as st
+
+#input values given into arrays
+CAN = [2.346, 2.374, 2.298, 2.321, 2.363, 2.317, 2.356, 2.338, 2.310]
+USA = [2.554, 2.507, 2.495, 2.558, 2.519, 2.490, 2.542, 2.527, 2.533, 2.513]
+
+#find means and stdevs
+canMean = st.mean(CAN)
+usaMean = st.mean(USA)
+canStdev = st.stdev(CAN)*3
+usaStdev = st.stdev(USA)*3
+
+#top of the eq
+top = (abs(canMean-usaMean))
+
+#bottom of eq
+bottom = sqrt((canStdev**2 * (len(CAN) - 1) + usaStdev ** 2 * (len(USA) - 1))/((len(CAN) - 1) + (len(CAN) - 1)))
+
+#divide top and bottom
+topbot = top/bottom
+
+#other half of the equation
+lenA= len(CAN)
+lenB= len(USA)
+otherhalf = sqrt((lenA*lenB)/(lenA+lenB))
+
+#multiply
+print(topbot*otherhalf)
